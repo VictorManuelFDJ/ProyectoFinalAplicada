@@ -1,6 +1,5 @@
 ﻿@page "/almacen"
 
-
 @inject NavigationManager NavigationManager
 @inject ProductosServices ProductosServices
 
@@ -10,27 +9,21 @@
 	<div class="card shadow-lg">
 		<div class="card-header space-between">
 			<h5 class="card-title">Registro de Productos</h5>
-
 			@*Boton Crear*@
 			<a href="almacen/Create" class=" btn btn-primary">
 				<span class=" bi bi-plus-square mt-3"></span> Crear
 			</a>
 		</div>
-
 		<div class=" card-body">
 			@*labels*@
 			<div class="row">
-
 				<div class="col-3">
 					<label class="col-form-label"><strong>Filtrar por</strong></label>
 				</div>
-
 				<div class=" col-4">
 					<label class="col-form-label"><strong>Busqueda</strong></label>
 				</div>
-
 			</div>
-
 			@*inputs*@
 			<div class="row aling-items-center">
 				@*filtro*@
@@ -41,7 +34,6 @@
 						<option value= "TipoVenta">Tipo de Venta</option>
 					</InputSelect>
 				</div>
-
 				@*busqueda*@
 				<div class="col-4">
 					<div class=" input-group">
@@ -57,7 +49,6 @@
 					</button>
 				</div>
 			</div>
-
 			@*Tabla*@
 			<table class="table table-hover mt-3">
 				<thead class="table table-striped text-black">
@@ -99,7 +90,6 @@
 					}
 				</tbody>
 			</table>
-
 			@*fooret*@
 			<div  class="card-footer space-between">
 				<label>Cantidad: @ListaProductos.Count()</label>
@@ -108,15 +98,6 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
 @code {
 	public List<Producto> ListaProductos { get; set; } = new List<Producto>();
 
