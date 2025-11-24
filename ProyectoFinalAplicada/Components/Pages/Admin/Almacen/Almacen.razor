@@ -1,0 +1,158 @@
+﻿@page "/almacen"
+
+
+@inject NavigationManager NavigationManager
+@inject ProductosServices ProductosServices
+
+<PageTitle>Almacen de productos</PageTitle>
+
+<div class="container">
+	<div class="card shadow-lg">
+		<div class="card-header space-between">
+			<h5 class="card-title">Registro de Productos</h5>
+
+			@*Boton Crear*@
+			<a href="almacen/Create" class=" btn btn-primary">
+				<span class=" bi bi-plus-square mt-3"></span> Crear
+			</a>
+		</div>
+
+		<div class=" card-body">
+			@*labels*@
+			<div class="row">
+
+				<div class="col-3">
+					<label class="col-form-label"><strong>Filtrar por</strong></label>
+				</div>
+
+				<div class=" col-4">
+					<label class="col-form-label"><strong>Busqueda</strong></label>
+				</div>
+
+			</div>
+
+			@*inputs*@
+			<div class="row aling-items-center">
+				@*filtro*@
+				<div class="col-3">
+					<InputSelect class=" form-select" @bind-Value="Filtro">
+					    <option value seleted disabled>Elija una opcion</option>
+						<option value="Nombre">Nombre del Producto</option>
+						<option value= "TipoVenta">Tipo de Venta</option>
+					</InputSelect>
+				</div>
+
+				@*busqueda*@
+				<div class="col-4">
+					<div class=" input-group">
+						<input class="form-control" @bind="ValorFiltro" placeholder="Buscar"/>
+						<button type="button"
+							class="btn btn-outline-primary bi bi-search" 
+							@onclick="Buscar"></button>
+					</div>
+				</div>
+				@*Restablecer*@
+				<div class=" col-2">
+					<button class="btn btn-outline-secondary" @onclick="Restablecer">
+					</button>
+				</div>
+			</div>
+
+			@*Tabla*@
+			<table class="table table-hover mt-3">
+				<thead class="table table-striped text-black">
+					<tr>
+						<th>Id</th>
+						<th>Nombre del Producto</th>
+						<th>Existencia</th>
+						<th>Precio de Venta</th>
+						<th>Tipo de venta</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if (ListaProductos is not null && ListaProductos.Any())
+					{
+						@foreach (var producto in ListaProductos)
+						{
+							<tr>
+								<td>@producto.Id_Producto</td>
+								<td>@producto.NombreProducto</td>
+								<td>@producto.Existencia</td>
+								<td>@producto.PrecioVenta</td>
+								<td>@producto.TipoVenta</td>
+								<td class="text-center">
+									<a href="/almacen/Edit/@producto.Id_Producto"
+									class=" btn btn-outline-danger-primary bi bi-pencil-square">
+								</a>
+								</td>
+							</tr>
+						}
+					}
+					else
+					{
+						<tr>
+							<td colspan="6" class="text-center">
+								No se encontraron productos.
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+			@*fooret*@
+			<div  class="card-footer space-between">
+				<label>Cantidad: @ListaProductos.Count()</label>
+				<label>Total Existencias: @ListaProductos.Sum(p => p.Existencia)</label>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+@code {
+	public List<Producto> ListaProductos { get; set; } = new List<Producto>();
+
+	public string Filtro { get; set; }
+	public string ValorFiltro { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		ListaProductos = await ProductosServices.Listar(p => p.Id_Producto > 0);
+	}
+
+	private async Task Buscar()
+	{
+		if (!string.IsNullOrWhiteSpace(ValorFiltro) && !string.IsNullOrWhiteSpace(Filtro))
+		{
+			var texto = ValorFiltro.ToLower();
+			if (Filtro == "Nombre")
+			{
+				ListaProductos = await ProductosServices.Listar(p => p.NombreProducto.ToLower().Contains(texto));
+			}
+			else if (Filtro == "TipoVenta")
+			{
+				ListaProductos = await ProductosServices.Listar(p => p.TipoVenta.ToLower().Contains(texto));
+			}
+		}
+		else
+		{
+			ListaProductos = await ProductosServices.Listar(p => p.Id_Producto > 0);
+		}
+	}
+
+	private async Task Restablecer()
+	{
+		ListaProductos = await ProductosServices.Listar(p => p.Id_Producto > 0);
+		ValorFiltro = string.Empty;
+		Filtro = string.Empty;
+	}
+
+}

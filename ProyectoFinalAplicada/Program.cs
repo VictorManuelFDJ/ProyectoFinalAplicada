@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalAplicada.Components;
 using ProyectoFinalAplicada.DAL;
+using ProyectoFinalAplicada.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 var ConStr = builder.Configuration.GetConnectionString("ConStr");
 builder.Services.AddDbContextFactory<Context>(c => c.UseSqlite(ConStr));
+
+builder.Services.AddScoped<ProductosServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
