@@ -12,7 +12,7 @@ namespace ProyectoFinalAplicada.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Admin",
+                name: "Usuario",
                 columns: table => new
                 {
                     Id_Admin = table.Column<int>(type: "INTEGER", nullable: false)
@@ -120,7 +120,7 @@ namespace ProyectoFinalAplicada.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoProducto",
+                name: "CategoriaProducto",
                 columns: table => new
                 {
                     Id_Tipo = table.Column<int>(type: "INTEGER", nullable: false),
@@ -160,7 +160,7 @@ namespace ProyectoFinalAplicada.Migrations
                     table.ForeignKey(
                         name: "FK_Producto_TipoProducto_Id_Producto",
                         column: x => x.Id_Producto,
-                        principalTable: "TipoProducto",
+                        principalTable: "CategoriaProducto",
                         principalColumn: "Id_Tipo",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -170,7 +170,7 @@ namespace ProyectoFinalAplicada.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Admin");
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Cliente");
@@ -182,7 +182,7 @@ namespace ProyectoFinalAplicada.Migrations
                 name: "Pedido");
 
             migrationBuilder.DropTable(
-                name: "TipoProducto");
+                name: "CategoriaProducto");
 
             migrationBuilder.DropTable(
                 name: "Transferencia");

@@ -76,10 +76,10 @@
     color: white;
 }
 
-.nav-item ::deep .nav-link:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
+    .nav-item ::deep .nav-link:hover {
+        background-color: #B98965;
+        color: white;
+    }
 
 .nav-scrollable {
     display: none;
@@ -96,8 +96,8 @@
 
     .nav-scrollable {
         /* Never collapse the sidebar for wide screens */
+        background-color: #D9B59A;
         display: block;
-
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;

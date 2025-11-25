@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="DATA\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

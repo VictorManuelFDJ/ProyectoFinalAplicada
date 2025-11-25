@@ -17,7 +17,7 @@ namespace ProyectoFinalAplicada.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.0");
 
-            modelBuilder.Entity("ProyectoFinalAplicada.Models.Admin", b =>
+            modelBuilder.Entity("ProyectoFinalAplicada.Models.Usuario", b =>
                 {
                     b.Property<int>("Id_Admin")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace ProyectoFinalAplicada.Migrations
 
                     b.HasKey("Id_Admin");
 
-                    b.ToTable("Admin");
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoFinalAplicada.Models.Cliente", b =>
@@ -188,7 +188,7 @@ namespace ProyectoFinalAplicada.Migrations
                     b.ToTable("Proveedor");
                 });
 
-            modelBuilder.Entity("ProyectoFinalAplicada.Models.TipoProducto", b =>
+            modelBuilder.Entity("ProyectoFinalAplicada.Models.CategoriaProducto", b =>
                 {
                     b.Property<int>("Id_Tipo")
                         .HasColumnType("INTEGER");
@@ -199,7 +199,7 @@ namespace ProyectoFinalAplicada.Migrations
 
                     b.HasKey("Id_Tipo");
 
-                    b.ToTable("TipoProducto");
+                    b.ToTable("CategoriaProducto");
                 });
 
             modelBuilder.Entity("ProyectoFinalAplicada.Models.Transferencia", b =>
@@ -237,7 +237,7 @@ namespace ProyectoFinalAplicada.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectoFinalAplicada.Models.TipoProducto", null)
+                    b.HasOne("ProyectoFinalAplicada.Models.CategoriaProducto", null)
                         .WithMany("DetalleTipo")
                         .HasForeignKey("Id_Producto")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -253,7 +253,7 @@ namespace ProyectoFinalAplicada.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProyectoFinalAplicada.Models.TipoProducto", b =>
+            modelBuilder.Entity("ProyectoFinalAplicada.Models.CategoriaProducto", b =>
                 {
                     b.HasOne("ProyectoFinalAplicada.Models.Proveedor", null)
                         .WithMany("ProveedorDetalle")
@@ -277,7 +277,7 @@ namespace ProyectoFinalAplicada.Migrations
                     b.Navigation("ProveedorDetalle");
                 });
 
-            modelBuilder.Entity("ProyectoFinalAplicada.Models.TipoProducto", b =>
+            modelBuilder.Entity("ProyectoFinalAplicada.Models.CategoriaProducto", b =>
                 {
                     b.Navigation("DetalleTipo");
                 });
