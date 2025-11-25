@@ -1,17 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoFinalAplicada.Models;
 
-public class Proveedor
+public class Usuario
 {
     [Key]
-    public int ProveedorId { get; set; }
+    public int UsuarioId {  get; set; }
 
     [Required]
     public string Nombre { get; set; }
-
     [Required]
-    public string Telefono { get; set; }
+    public string Clave { get; set; }
+    [Required]
+    public string Rol { get; set; }
+
+
+
 
 }

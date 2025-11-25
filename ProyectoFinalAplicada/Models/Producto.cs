@@ -5,23 +5,18 @@ namespace ProyectoFinalAplicada.Models;
 public class Producto
 {
     [Key]
-    public int Id_Producto { get; set; }
-
+    public int ProductoId { get; set; }
     [Required]
     public string NombreProducto { get; set; }
-
     [Required]
-    public double PrecioCompra { get; set; }
-
+    public double Costo { get; set; }
     [Required]
-    public double PrecioVenta { get; set; }
-
+    public double Precio { get; set; }
     [Required]
-    public string TipoVenta { get; set; }
-
+    public string UnidadMedida { get; set; }
     [Required]
-    public int Existencia { get; set; }
-
-
+    public string Categoria { get; set; }
+    [Required]
+    public double Existencia { get; set; }
 
 }
